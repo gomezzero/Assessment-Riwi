@@ -36,6 +36,7 @@ namespace Assessment_Riwi.Models
 
         [Column("role")]
         [MaxLength(10)]
+        [Required]
         public string Role { get; set; }
 
         public Patient(string name, string address, string password, string role)

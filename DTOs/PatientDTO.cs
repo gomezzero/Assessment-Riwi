@@ -26,6 +26,6 @@ namespace Assessment_Riwi.DTOs
         [MinLength(8, ErrorMessage = "Password must be at least 8 characters")]
         public required string Password { get; set; }
 
-        public string? Role { get; set; }
+        public required string Role { get; set; }
     }
 }

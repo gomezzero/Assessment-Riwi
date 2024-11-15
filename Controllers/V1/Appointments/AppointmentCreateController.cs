@@ -19,7 +19,7 @@ namespace Assessment_Riwi.Controllers.V1.Appointments
                 return BadRequest(ModelState);
             }
 
-            var newAppointment = new Models.Appointment(inputAppoitment.Status, inputAppoitment.Description, TimeOnly.Parse(inputAppoitment.AppointmentTime), inputAppoitment.AppointmentDay,inputAppoitment.PatientId, inputAppoitment.DoctorId);
+            var newAppointment = new Models.Appointment(inputAppoitment.Status, inputAppoitment.Description, TimeOnly.Parse(inputAppoitment.AppointmentTime), inputAppoitment.AppointmentDay, inputAppoitment.PatientId, inputAppoitment.DoctorId);
             await _appoint.Add(newAppointment);
 
             return Ok(newAppointment);
