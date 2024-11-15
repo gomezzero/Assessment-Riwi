@@ -27,6 +27,12 @@ namespace Assessment_Riwi.Models
         [MinLength(8)]
         public string Password { get; set; }
 
+        [Column("address")]
+        [Required]
+        [EmailAddress]
+        [MaxLength(30)]
+        public string Address { get; set; }
+
         [Column("entry_time")]
         [Required]
         public TimeOnly EntryTime { get; set; }
@@ -38,12 +44,13 @@ namespace Assessment_Riwi.Models
         [Column("role")]
         [Required]
         [MaxLength(7)]
-        public string Role = "doctor";
+        public string Role { get; set; }
 
-        public Doctor(string name, string password, TimeOnly entryTime, TimeOnly departureTime,string role)
+        public Doctor(string name, string password, string address,TimeOnly entryTime, TimeOnly departureTime, string role)
         {
             Name = name.ToLower().Trim();
             Password = password;
+            Address = address.ToLower().Trim();
             EntryTime = entryTime;
             DepartureTime = departureTime;
             Role = role.ToLower().Trim();

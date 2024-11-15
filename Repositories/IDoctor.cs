@@ -14,6 +14,8 @@ namespace Assessment_Riwi.Repositories
         Task<IEnumerable<Doctor>> GetAll();
         Task<IEnumerable<Doctor>> GetAllAvailableDoctors(DateOnly date, TimeOnly time);
         Task<Doctor?> GetById(int id);
+        Task<Doctor?> GetByAddressDoct(string address);
+
 
 
         // Util

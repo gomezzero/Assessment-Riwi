@@ -94,6 +94,18 @@ namespace Assessment_Riwi.Services
                 .ToListAsync();
         }
 
+        public async Task<Doctor?> GetByAddressDoct(string address)
+        {
+            try
+            {
+                return await _context.Doctors.FirstOrDefaultAsync(u => u.Address == address);
+            }
+            catch (Exception exi)
+            {
+                throw new Exception("An error occurred during patient search", exi);
+            }
+        }
+
         public async Task<Doctor?> GetById(int id)
         {
             return await _context.Doctors.FindAsync(id);

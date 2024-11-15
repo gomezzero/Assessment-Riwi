@@ -178,6 +178,12 @@ namespace Assessment_Riwi.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("address");
+
                     b.Property<TimeOnly>("DepartureTime")
                         .HasColumnType("time(6)")
                         .HasColumnName("departure_time");
@@ -200,7 +206,8 @@ namespace Assessment_Riwi.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasMaxLength(7)
+                        .HasColumnType("varchar(7)")
                         .HasColumnName("role");
 
                     b.HasKey("Id");
@@ -211,91 +218,101 @@ namespace Assessment_Riwi.Migrations
                         new
                         {
                             Id = 1,
+                            Address = "smith.gomez@email.com",
                             DepartureTime = new TimeOnly(16, 0, 0),
                             EntryTime = new TimeOnly(8, 0, 0),
                             Name = "john smith",
-                            Password = "$2a$11$gVK80d/aq30DFbTCVhVkLOG0jp9FqsRpGegERiyc08Y7/poNcPQb6",
+                            Password = "$2a$11$Jwa4yGhoLIY31DxKtX4Cf.T20vYUYqrk/hvavRz0cDn5VU0ryjAXy",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 2,
+                            Address = "davis.gomez@email.com",
                             DepartureTime = new TimeOnly(17, 0, 0),
                             EntryTime = new TimeOnly(9, 0, 0),
                             Name = "emily davis",
-                            Password = "$2a$11$n6iFAkXI7BOskqW0sGACzeUXJnZnYqJ7R6bVTfnaBV1p60fAY6Ple",
+                            Password = "$2a$11$lK9hyALcCcxXZ1sZtOK78ec6JrjkwBgfuNqK8cqKt89hcGVVHLwI.",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 3,
+                            Address = "johnson.gomez@email.com",
                             DepartureTime = new TimeOnly(15, 30, 0),
                             EntryTime = new TimeOnly(7, 30, 0),
                             Name = "michael johnson",
-                            Password = "$2a$11$uPFjG/rApiAsFCaasB1ygOs45xkNxWWPFRaUD7/mH4VNdy5Eqa1pK",
+                            Password = "$2a$11$KOLUu8pyDF9VGb7YHf93T.1m6yVd6Gsivm6Lah1sx7rJVuF9x8Nqy",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 4,
+                            Address = "brown.gomez@email.com",
                             DepartureTime = new TimeOnly(18, 0, 0),
                             EntryTime = new TimeOnly(10, 0, 0),
                             Name = "sophia brown",
-                            Password = "$2a$11$Le6WcFjhypYOPdSXOgMMO.4MC7A34Me6JLIuNcSTrPXCs.D.A3FS2",
+                            Password = "$2a$11$zp94w.8gBBbmfUlgcb80su97HMCR7A0/l6taSKdfga5jRt6VHj2r2",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 5,
+                            Address = "james.gomez@email.com",
                             DepartureTime = new TimeOnly(14, 0, 0),
                             EntryTime = new TimeOnly(6, 0, 0),
                             Name = "james williams",
-                            Password = "$2a$11$QM0RYA7TMqRi6/y1KaztGOh/UZn.k2FYIpn6nu3IiHlxW2jP9FrlK",
+                            Password = "$2a$11$1.n.TLnaqSVaeZvwE6s1C.r2dMkUd6G55cVFyfbRVgbMUI8.PCwbO",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 6,
+                            Address = "olivia.gomez@email.com",
                             DepartureTime = new TimeOnly(21, 0, 0),
                             EntryTime = new TimeOnly(13, 0, 0),
                             Name = "olivia martinez",
-                            Password = "$2a$11$Vj36vb45zMYlvfGmvFmJGOSYBNZzDRr9MtgT0pX2nLbtGADjnghpK",
+                            Password = "$2a$11$IEH/Yd9LcOLqofdVNNodHuT4sXDn4eap6J3XR8CB06KMKCogc9vaK",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 7,
+                            Address = "benjamin.gomez@email.com",
                             DepartureTime = new TimeOnly(20, 0, 0),
                             EntryTime = new TimeOnly(12, 0, 0),
                             Name = "benjamin wilson",
-                            Password = "$2a$11$n8AQLYn4wE1h0cjAI3XUqexzLaPZcNEbUADC74D2ZHJCXQKoO/NM6",
+                            Password = "$2a$11$9EvYWa5qzomSrXmIC77KS.7W2oQgE1whED7UV07QQG6E0S8TPW4.O",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 8,
+                            Address = "miller.gomez@email.com",
                             DepartureTime = new TimeOnly(19, 0, 0),
                             EntryTime = new TimeOnly(11, 0, 0),
                             Name = "isabella miller",
-                            Password = "$2a$11$kPETeApz2jKxdh2DsUg7s.dVxlUQOJMS/c.DDK5uawq502YoDPlFO",
+                            Password = "$2a$11$qm0CFGelAAUfbcWBW1ktAucH2cQoBQSAtVb0.bwsGA.Ht5j1WoXie",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 9,
+                            Address = "clark.gomez@email.com",
                             DepartureTime = new TimeOnly(22, 0, 0),
                             EntryTime = new TimeOnly(14, 0, 0),
                             Name = "elijah garcia",
-                            Password = "$2a$11$rQu6zNJpbBjtaBOVneCSE.UPkrNFg9EaXAO1QO7YKaRjrH5MOPZZq",
+                            Password = "$2a$11$5NJiFbx.D0EG9QqqrYUQ2.Y1kT0FDXUzZ.VztzcgFaztDTEBO7zRu",
                             Role = "doctor"
                         },
                         new
                         {
                             Id = 10,
+                            Address = "garcia.gomez@email.com",
                             DepartureTime = new TimeOnly(13, 30, 0),
                             EntryTime = new TimeOnly(5, 30, 0),
                             Name = "amelia clark",
-                            Password = "$2a$11$WdgNEBaG0Ki5B7SFya28/ea13MOg4/Qvthh7NVmj4KMsKr489fkxW",
+                            Password = "$2a$11$lHZRU/wNlFhGj4NsieM69Or3PhNmbzHT8.1J7JOX2Iy/kkCKFQzRi",
                             Role = "doctor"
                         });
                 });
@@ -343,80 +360,80 @@ namespace Assessment_Riwi.Migrations
                             Id = 1,
                             Address = "alice.green@example.com",
                             Name = "alice green",
-                            Password = "$2a$11$bHv06tjMz7rtJdn6vbotgu/f8UvFiy8BzXuqyKtNiS2IkWG1bPsKq",
-                            Role = "Patient"
+                            Password = "$2a$11$mzPDxc3UAWpZMlEJmj3xGu8/t8hduW7BIpGOfH0Sm/WA21fLeIF6C",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 2,
                             Address = "bob.brown@example.com",
                             Name = "bob brown",
-                            Password = "$2a$11$3hiWuAxx4LKnqcF1uj3BFu5dkp3LZHlpXXnGyIjiOTSxq2VFiXuwW",
-                            Role = "Patient"
+                            Password = "$2a$11$p/ZxWzcYD1VBB8rPUY2pH.mG3JNRdmsxPq8oXu2S46YkMF6mz7.a6",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 3,
                             Address = "charlie.white@example.com",
                             Name = "charlie white",
-                            Password = "$2a$11$yUd0GeDn22EdOpq1QtF42uI7QXeLuoF/pAE9n/8yNeDK.Z5DG6Pf6",
-                            Role = "Patient"
+                            Password = "$2a$11$7sq.MGjwnhDR0f0.Js2eeeq6tT3RTPdJCEfhspg5MJg8aE87NhBzO",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 4,
                             Address = "diana.black@example.com",
                             Name = "diana black",
-                            Password = "$2a$11$49SMxGcUdL/tK2L1ML9/EOwWHm5PJmxYoi8fdWESsbxmkcN7TLq.u",
-                            Role = "Patient"
+                            Password = "$2a$11$8MgHntp9MZQoUn4GcUkthOoogYudVkrDR60pcEFL4255aSG1l.1Cu",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 5,
                             Address = "edward.harris@example.com",
                             Name = "edward harris",
-                            Password = "$2a$11$d3Kd/XHATDJFZIdbbbqxkOh/gC12QvlEkAkbg7Lq6sqqXtmBpaHFO",
-                            Role = "Patient"
+                            Password = "$2a$11$yQk7nGI7JklrbGI46re2kOLiWpQD4QRahIHVTCqKiUz68mTRc2Xza",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 6,
                             Address = "fiona.scott@example.com",
                             Name = "fiona scott",
-                            Password = "$2a$11$2WMcvkynZgnQ13Jdjq/UV.9w4WEQ3kCa3eCKQd7EUgy0rxUJuJxHi",
-                            Role = "Patient"
+                            Password = "$2a$11$cKKLYVY1Dw9GdbM4oa836.KCXrGJxecGdkgQWpZazbZu56B.vA6hO",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 7,
                             Address = "george.clark@example.com",
                             Name = "george clark",
-                            Password = "$2a$11$2j8cj/QnHBa8WBavOm3ZC.qbt3zJrr/SIjQ0lj8FJBJ5aEZTXC1DC",
-                            Role = "Patient"
+                            Password = "$2a$11$Gq9B4zFDP3.wPIk6zbklaO8bV4I6tnlen74X2LPqsgwwoLaAw0XnK",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 8,
                             Address = "hannah.king@example.com",
                             Name = "hannah king",
-                            Password = "$2a$11$xJQH72CNUW5KnP0jXmQD6O/ryyQLyq21gUXFLR/EtAMAOGM90gkje",
-                            Role = "Patient"
+                            Password = "$2a$11$BYkjWoj9CXZTchiPWeas2uJyvnStIMmijmRJLDgL.2g20JKQxeJUi",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 9,
                             Address = "ian.wilson@example.com",
                             Name = "ian wilson",
-                            Password = "$2a$11$kZD6R8UMZ5fmLUbdDAgydO8JvN/3Rh4O0tlmkfCUOKLy7y1andM5q",
-                            Role = "Patient"
+                            Password = "$2a$11$kONP/NJV7AABXheAP4sO9O36SRw2PAQbXnvzyk7DMMnnQgMTdHpJ6",
+                            Role = "patient"
                         },
                         new
                         {
                             Id = 10,
                             Address = "julia.turner@example.com",
                             Name = "julia turner",
-                            Password = "$2a$11$sBZpZlrqi6ukxJDkP4p9YudN2C4BHJeQ6vNjIoGgu35Z5az/FbRL2",
-                            Role = "Patient"
+                            Password = "$2a$11$iHZKi05e3jDtra0E9sSXUOwHhiSZqUwvPTddJE05Q.Yx88ff8JEtO",
+                            Role = "patient"
                         });
                 });
 
