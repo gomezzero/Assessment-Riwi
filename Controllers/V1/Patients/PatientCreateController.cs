@@ -7,6 +7,7 @@ using Assessment_Riwi.DTOs;
 using Assessment_Riwi.Models;
 using Assessment_Riwi.Repositories;
 using EventsAPI.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
@@ -19,6 +20,7 @@ namespace Assessment_Riwi.Controllers.V1.Patients
     public class PatienteCreatController(IPatient patient) : PatientController(patient)
     {
         [HttpPost]
+        [Authorize]
         [SwaggerOperation(
             Summary = "Creates a new Patient",
             Description = "Adds a new Patient to the system with the provided name and description."

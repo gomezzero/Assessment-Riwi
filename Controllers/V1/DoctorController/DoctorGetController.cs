@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assessment_Riwi.Models;
 using Assessment_Riwi.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
@@ -17,7 +18,7 @@ namespace Assessment_Riwi.Controllers.V1.DoctorController
     public class DoctorGetController(IDoctor doctor) : DoctorController(doctor)
     {
         [HttpGet("{id}")]
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "doctor")]
         [SwaggerOperation(
             Summary = "Retrieves a Doctor by ID",
             Description = "Returns the Doctor details for the specified ID."
@@ -36,7 +37,7 @@ namespace Assessment_Riwi.Controllers.V1.DoctorController
         }
 
         [HttpGet("all")]
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "doctor")]
         [SwaggerOperation(
             Summary = "Retrieves all Doctor",
             Description = "Returns a list of all Doctor in the system."
@@ -49,13 +50,19 @@ namespace Assessment_Riwi.Controllers.V1.DoctorController
         }
 
         [HttpGet("available")]
+        [Authorize(Roles = "doctor")]
+        [SwaggerOperation(
+            Summary = "Retrieves all available Doctor",
+            Description = "Returns a list of all available Doctor in the system."
+        )]
+        [SwaggerResponse(200, "A list of Doctor", typeof(IEnumerable<Doctor>))]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetAvailableDoctors([FromQuery] DateOnly date, [FromQuery] TimeOnly time)
         {
             var doctors = await _doct.GetAllAvailableDoctors(date, time);
 
             if (doctors == null || !doctors.Any())
             {
-                return NotFound("No hay doctores disponibles para la fecha y hora solicitadas.");
+                return NotFound("There are no doctors available for the date and time requested.");
             }
 
             return Ok(doctors);

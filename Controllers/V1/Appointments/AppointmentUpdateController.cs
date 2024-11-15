@@ -19,12 +19,12 @@ namespace Assessment_Riwi.Controllers.V1.Appointment
     {
         [HttpPut("{id}")]
         [SwaggerOperation(
-            Summary = "Updates an existing Event",
-            Description = "Updates the Event with the specified ID, if it exists, with the provided new details."
+            Summary = "Updates an existing Appointment",
+            Description = "Updates the Appointment with the specified ID, if it exists, with the provided new details."
         )]
-        [SwaggerResponse(204, "The Event was successfully updated")]
-        [SwaggerResponse(400, "If the provided Event data is invalid")]
-        [SwaggerResponse(404, "If the Event with the specified ID is not found")]
+        [SwaggerResponse(204, "The Appointment was successfully updated")]
+        [SwaggerResponse(400, "If the provided Appointment data is invalid")]
+        [SwaggerResponse(404, "If the Appointment with the specified ID is not found")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] AppointmentDTO updateAppoint)
         {
             if (!ModelState.IsValid)
@@ -32,10 +32,10 @@ namespace Assessment_Riwi.Controllers.V1.Appointment
                 return BadRequest(ModelState);
             }
 
-            var checkEvent = await _appoint.CheckExistence(id);
+            var checkAppointment = await _appoint.CheckExistence(id);
 
 
-            if (!checkEvent)
+            if (!checkAppointment)
             {
                 return NotFound($"la vento N°{id} no existe en la base de datos");
             }

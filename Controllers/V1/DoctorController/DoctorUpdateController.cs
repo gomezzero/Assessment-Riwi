@@ -19,12 +19,12 @@ namespace Assessment_Riwi.Controllers.V1.DoctorController
     {
         [HttpPut("{id}")]
         [SwaggerOperation(
-            Summary = "Updates an existing Event",
-            Description = "Updates the Event with the specified ID, if it exists, with the provided new details."
+            Summary = "Updates an existing Doctor",
+            Description = "Updates the Doctor with the specified ID, if it exists, with the provided new details."
         )]
-        [SwaggerResponse(204, "The Event was successfully updated")]
-        [SwaggerResponse(400, "If the provided Event data is invalid")]
-        [SwaggerResponse(404, "If the Event with the specified ID is not found")]
+        [SwaggerResponse(204, "The Doctor was successfully updated")]
+        [SwaggerResponse(400, "If the provided Doctor data is invalid")]
+        [SwaggerResponse(404, "If the Doctor with the specified ID is not found")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] DoctorDTO updateDoctor)
         {
             if (!ModelState.IsValid)
@@ -32,12 +32,12 @@ namespace Assessment_Riwi.Controllers.V1.DoctorController
                 return BadRequest(ModelState);
             }
 
-            var checkEvent = await _doct.CheckExistence(id);
+            var checkDoctor = await _doct.CheckExistence(id);
 
 
-            if (!checkEvent)
+            if (!checkDoctor)
             {
-                return NotFound($"la vento N°{id} no existe en la base de datos");
+                return NotFound($"doctor N°{id} does not exist in the database");
             }
 
             var doctor = await _doct.GetById(id);

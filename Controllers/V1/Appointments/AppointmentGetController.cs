@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assessment_Riwi.Models;
 using Assessment_Riwi.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
@@ -17,7 +18,7 @@ namespace Assessment_Riwi.Controllers.V1.Appointments
     public class AppointmentGetController(IAppointment appointment) : AppointmentController(appointment)
     {
         [HttpGet("all")]
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "doctor")]
         [SwaggerOperation(
            Summary = "Retrieves all Appointment",
            Description = "Returns a list of all Appointment in the system."
@@ -30,6 +31,13 @@ namespace Assessment_Riwi.Controllers.V1.Appointments
         }
 
         [HttpGet("patient/{address}")]
+        [Authorize]
+        [SwaggerOperation(
+           Summary = "Retrieves by address Appointment",
+           Description = "Returns a list by address Appointment in the system."
+       )]
+        [SwaggerResponse(200, "A list of Appointment", typeof(IEnumerable<Models.Appointment>))]
+
         public async Task<ActionResult<IEnumerable<Models.Appointment>>> GetPatientAddress(string address)
         {
             var appointment = await _appoint.GetPatientAddress(address);
@@ -43,6 +51,13 @@ namespace Assessment_Riwi.Controllers.V1.Appointments
         }
 
         [HttpGet("doctor/{doctorId}")]
+        [Authorize(Roles = "doctor")]
+        [SwaggerOperation(
+           Summary = "Retrieves by doctor Id Appointment",
+           Description = "Returns a list by doctor Id Appointment in the system."
+       )]
+        [SwaggerResponse(200, "A list of Appointment", typeof(IEnumerable<Models.Appointment>))]
+
         public async Task<ActionResult<IEnumerable<Models.Appointment>>> GetDoctorId(int doctorId)
         {
             var appointment = await _appoint.GetDoctorId(doctorId);

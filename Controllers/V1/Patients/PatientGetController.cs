@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assessment_Riwi.Models;
 using Assessment_Riwi.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
@@ -17,7 +18,7 @@ namespace Assessment_Riwi.Controllers.V1.Patients
     public class PatientGetController(IPatient patient) : PatientController(patient)
     {
         [HttpGet("all")]
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles  = "doctor")]
         [SwaggerOperation(
             Summary = "Retrieves all Patient",
             Description = "Returns a list of all Patient in the system."
@@ -31,14 +32,15 @@ namespace Assessment_Riwi.Controllers.V1.Patients
 
 
         [HttpGet("{address}")]
+        [Authorize]
+        [SwaggerOperation(
+            Summary = "Retrieves by addres Patient",
+            Description = "Returns a Patient in the system for addres."
+        )]
+        [SwaggerResponse(200, "A list of Patient", typeof(IEnumerable<Patient>))]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatientAddress(string address)
         {
             var patient = await _patient.GetByAddress(address);
-
-            if (patient == null)
-            {
-                return NotFound($"No patients were found for the patient with the address: {address}");
-            }
 
             return Ok(patient);
         }

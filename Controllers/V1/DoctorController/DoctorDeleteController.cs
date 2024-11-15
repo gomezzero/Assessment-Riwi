@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Assessment_Riwi.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
@@ -16,6 +17,7 @@ namespace Assessment_Riwi.Controllers.V1.DoctorController
     public class DoctorDeleteController(IDoctor doctor) : DoctorController(doctor)
     {
         [HttpDelete("{id}")]
+        [Authorize(Roles = "doctor")]
         [SwaggerOperation(
             Summary = "Deletes a doctor by ID",
             Description = "Removes the specified doctor from the system."

@@ -8,6 +8,7 @@ using Assessment_Riwi.DTOs;
 using Assessment_Riwi.Models;
 using Assessment_Riwi.Repositories;
 using EventsAPI.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace essment_Riwi.Controllers.V1.DoctorCreateController
     public class DoctorCreateController(IDoctor doctor) : DoctorController(doctor)
     {
         [HttpPost]
+        [Authorize(Roles = "doctor")]
         [SwaggerOperation(
             Summary = "Creates a new Doctor",
             Description = "Adds a new Doctor to the system with the provided name and description."

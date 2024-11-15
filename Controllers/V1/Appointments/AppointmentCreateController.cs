@@ -1,7 +1,9 @@
 using Assessment_Riwi.DTOs;
 using Assessment_Riwi.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Assessment_Riwi.Controllers.V1.Appointments
 {
@@ -11,7 +13,13 @@ namespace Assessment_Riwi.Controllers.V1.Appointments
     public class AppointmentCreateController(IAppointment appointment) : AppointmentController(appointment)
     {
         [HttpPost]
-
+        [Authorize]
+        [SwaggerOperation(
+            Summary = "Creates a new Appointment",
+            Description = "Adds a new Appointment to the system with the provided name and description."
+        )]
+        [SwaggerResponse(201, "The Appointment was successfully created", typeof(Models.Appointment))]
+        [SwaggerResponse(400, "If the Appointment data is invalid")]
         public async Task<ActionResult<Models.Appointment>> Create([FromBody] AppointmentDTO inputAppoitment)
         {
             if (!ModelState.IsValid)
