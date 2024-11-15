@@ -93,14 +93,24 @@ namespace Assessment_Riwi.Services
         public async Task<IEnumerable<Appointment>> GetPatientAddress(string address)
         {
             return await _context.Appointments.Include(a => a.Patient)
-                        .Where(a => a.Patient.Address ==  address.ToLower().Trim()).ToListAsync();
-        }
-
-        public async Task<IEnumerable<Appointment>> GetDoctorId(int DoctorId)
-        {
-            return await _context.Appointments.Include(a => a.Doctor).Where(a => a.DoctorId == DoctorId)
+                        .Where(a => a.Patient.Address.ToLower().Trim() == address.ToLower().Trim())
                         .ToListAsync();
         }
+
+
+        public async Task<IEnumerable<Appointment>> GetDoctorId(int doctorId)
+        {
+            return await _context.Appointments.Include(a => a.Doctor)
+                        .Where(a => a.DoctorId == doctorId)
+                        .ToListAsync();
+        }
+
+        
+        public async Task<Appointment?> GetById(int id)
+        {
+            return await _context.Appointments.FindAsync(id);
+        }
+
 
         //Utils
         public async Task<bool> CheckExistence(int id)

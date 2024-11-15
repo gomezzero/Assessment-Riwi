@@ -27,6 +27,9 @@ namespace Assessment_Riwi.DTOs
         [Required(ErrorMessage = "the user Id is required")]
         public required int PatientId { get; set; }
 
+        [Required(ErrorMessage = "the user Id is required")]
+        public required int DoctorId { get; set; }
+
 
         [Required(ErrorMessage = "the Event Id is required")]
         public required int Patient { get; set; }
