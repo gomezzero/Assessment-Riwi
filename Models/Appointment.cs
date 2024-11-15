@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assessment_Riwi.Models
 {
-    [Tags("appointments")]
+    [Table("appointments")]
     public class Appointment
     {
 
@@ -19,6 +19,11 @@ namespace Assessment_Riwi.Models
         [Column("status")]
         [Required]
         public string Status { get; set; }
+
+        [Column("description")]
+        [MaxLength(300)]
+        [Required]
+        public string Description { get; set; }
 
         [Column("appointment_time")]
         [Required]
@@ -42,9 +47,10 @@ namespace Assessment_Riwi.Models
         [ForeignKey("DoctorId")]
         public Doctor? Doctor { get; set; }
 
-        public Appointment(string status, TimeOnly appointmentTime, DateOnly appointmentDay, int patientId, int doctorId) 
+        public Appointment(string status, string description, TimeOnly appointmentTime, DateOnly appointmentDay, int patientId, int doctorId) 
         {
             Status = status.ToLower().Trim();
+            Description = description.ToLower().Trim();
             AppointmentTime = appointmentTime;
             AppointmentDay = appointmentDay;
             PatientId = patientId;

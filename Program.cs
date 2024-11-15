@@ -1,6 +1,8 @@
 using System.Text;
 using Assessment_Riwi.Config;
 using Assessment_Riwi.Data;
+using Assessment_Riwi.Repositories;
+using Assessment_Riwi.Services;
 using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +29,9 @@ builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.Parse("8.0.20-mysql")));
 
 // Registrar servicios y repositorios
-// builder.Services.AddScoped<IUser, UserService>();
+builder.Services.AddScoped<IDoctor, DoctorService>();
+builder.Services.AddScoped<IPatient, PatientService>();
+builder.Services.AddScoped<IAppointment, AppointmentService>();
 
 // Configuración de JWT
 builder.Services.AddSingleton<JWT>();
@@ -60,13 +64,13 @@ builder.Services.AddAuthentication(config =>
 //     options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
 // });
 
-// Configuración de servicios
-// builder.Services.AddControllers()
-//     .AddJsonOptions(options =>
-//     {
-//         options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter()); // Permite el uso de TimeOnly
-//         options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter()); // Permite que se acepte el tipo de dato DateOnly
-//     });
+//  Service configuration
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter()); // Permite el uso de TimeOnly
+        options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter()); // Permite que se acepte el tipo de dato DateOnly
+    });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -74,7 +78,7 @@ builder.Services.AddSwaggerGen(c =>
     c.EnableAnnotations();
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Assessment", Version = "v1" });
 
-    // Configuración de JWT en Swagger
+    // JWT configuration in Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",

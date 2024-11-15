@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assessment_Riwi.Models
 {
-    [Table("Doctors")]
+    [Table("doctors")]
     public class Doctor
     {
         [Key]
