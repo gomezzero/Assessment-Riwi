@@ -35,15 +35,14 @@ namespace Assessment_Riwi.Models
         public string Password { get; set; }
 
         [Column("role")]
-        [MaxLength(10)]
-        public string Role { get; set; }
+        public string Role = "patient";
 
         public Patient(string name, string address, string password, string role)
         {
             Name = name.ToLower().Trim();
             Address = address.ToLower().Trim();
             Password = password;
-            Role = role;
+            Role = role.ToLower().Trim();
         }
     }
 }

@@ -57,12 +57,12 @@ builder.Services.AddAuthentication(config =>
 });
 
 // Configuración de autorización basada en roles
-// builder.Services.AddAuthorization(options =>
-// {
-//     // Definir políticas de autorización según los roles
-//     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
-//     options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
-// });
+builder.Services.AddAuthorization(options =>
+{
+    // Definir políticas de autorización según los roles
+    options.AddPolicy("DoctorOnly", policy => policy.RequireRole("doctor"));
+    options.AddPolicy("PatientOnly", policy => policy.RequireRole("patient"));
+});
 
 //  Service configuration
 builder.Services.AddControllers()

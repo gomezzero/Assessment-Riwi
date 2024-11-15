@@ -29,8 +29,6 @@ namespace Assessment_Riwi.DTOs
         public required string DepartureTime { get; set; }
 
 
-        [Required(ErrorMessage = "the Role is required")]
-        [MaxLength(7, ErrorMessage = "Role must be 10 characters or less")]
-        public required string Role { get; set; }
+        public required string Role = "doctor";
     }
 }

@@ -93,7 +93,7 @@ namespace Assessment_Riwi.Services
         public async Task<IEnumerable<Appointment>> GetPatientAddress(string address)
         {
             return await _context.Appointments.Include(a => a.Patient)
-                        .Where(a => a.Patient.Address == address.ToLower().Trim()).ToListAsync();
+                        .Where(a => a.Patient.Address ==  address.ToLower().Trim()).ToListAsync();
         }
 
         public async Task<IEnumerable<Appointment>> GetDoctorId(int DoctorId)

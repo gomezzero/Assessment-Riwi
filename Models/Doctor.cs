@@ -38,7 +38,7 @@ namespace Assessment_Riwi.Models
         [Column("role")]
         [Required]
         [MaxLength(7)]
-        public string Role { get; set; }
+        public string Role = "doctor";
 
         public Doctor(string name, string password, TimeOnly entryTime, TimeOnly departureTime,string role)
         {
