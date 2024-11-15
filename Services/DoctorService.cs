@@ -88,10 +88,24 @@ namespace Assessment_Riwi.Services
 
         public async Task<IEnumerable<Doctor>> GetAllAvailableDoctors(DateOnly date, TimeOnly time)
         {
-            return await _context.Doctors
-                .Where(d => d.EntryTime <= time && d.DepartureTime >= time && !_context.Appointments
-                .Any(a => a.DoctorId == d.Id && a.AppointmentDay == date && a.AppointmentTime == time))
+
+            // Consulta los doctores que estén dentro de su horario de trabajo
+            var availableDoctors = await _context.Doctors
+                .Where(d => d.EntryTime <= time && d.DepartureTime >= time)
                 .ToListAsync();
+
+            // Filtra los doctores que ya tienen citas asignadas en esa fecha y hora
+            var unavailableDoctors = await _context.Appointments
+                .Where(a => a.AppointmentDay == date && a.AppointmentTime == time)
+                .Select(a => a.DoctorId)
+                .ToListAsync();
+
+            // Devuelve solo los doctores que no tienen citas a la hora seleccionada
+            var finalAvailableDoctors = availableDoctors
+                .Where(d => !unavailableDoctors.Contains(d.Id))
+                .ToList();
+
+            return finalAvailableDoctors;
         }
 
         public async Task<Doctor?> GetByAddressDoct(string address)
