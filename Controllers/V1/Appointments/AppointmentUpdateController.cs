@@ -50,7 +50,7 @@ namespace Assessment_Riwi.Controllers.V1.Appointment
 
             aspointment.Status = updateAppoint.Status;
             aspointment.Description = updateAppoint.Description;
-            aspointment.AppointmentTime = TimeOnly.Parse(updateAppoint.AppointmentTime);
+            aspointment.AppointmentTime = updateAppoint.AppointmentTime;
             aspointment.AppointmentDay = updateAppoint.AppointmentDay;
             aspointment.PatientId = updateAppoint.PatientId;
             aspointment.DoctorId = updateAppoint.DoctorId;

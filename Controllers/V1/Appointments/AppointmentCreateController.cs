@@ -27,7 +27,16 @@ namespace Assessment_Riwi.Controllers.V1.Appointments
                 return BadRequest(ModelState);
             }
 
-            var newAppointment = new Models.Appointment(inputAppoitment.Status, inputAppoitment.Description, TimeOnly.Parse(inputAppoitment.AppointmentTime), inputAppoitment.AppointmentDay, inputAppoitment.PatientId, inputAppoitment.DoctorId);
+            var newAppointment = new Models.Appointment(inputAppoitment.Status, inputAppoitment.Description, inputAppoitment.AppointmentTime, inputAppoitment.AppointmentDay, inputAppoitment.PatientId, inputAppoitment.DoctorId);
+
+            var existingAppointment = await _appoint.GetAppointmentByDoctorAndDate(newAppointment.DoctorId, newAppointment.AppointmentDay, newAppointment.AppointmentTime);
+
+            if (existingAppointment != null)
+            {
+                return BadRequest("The doctor already has an appointment on the selected day.");
+            }
+
+
             await _appoint.Add(newAppointment);
 
             return Ok(newAppointment);

@@ -16,9 +16,9 @@ namespace Assessment_Riwi.DTOs
         public required string Description { get; set; }
 
 
-        [Required(ErrorMessage = "the Time is required")]
-        [RegularExpression(@"^([01]?[0-9]|2[0-3]):([0-5][0-9])$", ErrorMessage = "Invalid time format. Please use HH:mm")]
-        public required string AppointmentTime { get; set; }
+        [Required(ErrorMessage = "the Time is required 2")]
+        // [RegularExpression(@"^([01]?[0-9]|2[0-3]):([0-5][0-9])$", ErrorMessage = "Invalid time format. Please use HH:mm 2")]
+        public required TimeOnly AppointmentTime { get; set; }
 
 
         [Required(ErrorMessage = "the Date is required")]

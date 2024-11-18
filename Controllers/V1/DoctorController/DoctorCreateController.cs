@@ -40,7 +40,7 @@ namespace essment_Riwi.Controllers.V1.DoctorCreateController
 
             var hasPassword = PasswordHasher.HashPassword(inputDoctor.Password);
 
-            var newDoctor = new Doctor(inputDoctor.Name, hasPassword, inputDoctor.Address, TimeOnly.Parse(inputDoctor.EntryTime), TimeOnly.Parse(inputDoctor.DepartureTime), inputDoctor.Role);
+            var newDoctor = new Doctor(inputDoctor.Name, hasPassword, inputDoctor.Address, inputDoctor.EntryTime, inputDoctor.DepartureTime, inputDoctor.Role);
 
             await _doct.Add(newDoctor);
 

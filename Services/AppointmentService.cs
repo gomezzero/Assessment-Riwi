@@ -97,6 +97,11 @@ namespace Assessment_Riwi.Services
                         .ToListAsync();
         }
 
+        public async Task<Appointment> GetAppointmentByDoctorAndDate(int doctorId, DateOnly appointmentDay, TimeOnly appointmentTime)
+        {
+            return await _context.Appointments
+                .FirstOrDefaultAsync(a => a.DoctorId == doctorId && a.AppointmentDay == appointmentDay && a.AppointmentTime == appointmentTime);
+        }
 
         public async Task<IEnumerable<Appointment>> GetDoctorId(int doctorId)
         {
@@ -105,7 +110,7 @@ namespace Assessment_Riwi.Services
                         .ToListAsync();
         }
 
-        
+
         public async Task<Appointment?> GetById(int id)
         {
             return await _context.Appointments.FindAsync(id);

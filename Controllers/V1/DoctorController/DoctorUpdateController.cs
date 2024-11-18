@@ -49,8 +49,8 @@ namespace Assessment_Riwi.Controllers.V1.DoctorController
 
             doctor.Name = updateDoctor.Name;
             doctor.Address = updateDoctor.Address;
-            doctor.EntryTime = TimeOnly.Parse(updateDoctor.EntryTime);
-            doctor.DepartureTime = TimeOnly.Parse(updateDoctor.DepartureTime); ;
+            doctor.EntryTime = updateDoctor.EntryTime;
+            doctor.DepartureTime = updateDoctor.DepartureTime;
             doctor.Role = updateDoctor.Role;
 
             if (!string.IsNullOrWhiteSpace(updateDoctor.Password))

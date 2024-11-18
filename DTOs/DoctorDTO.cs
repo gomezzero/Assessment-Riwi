@@ -26,13 +26,13 @@ namespace Assessment_Riwi.DTOs
 
 
         [Required(ErrorMessage = "the Time is required")]
-        [RegularExpression(@"^([01]?[0-9]|2[0-3]):([0-5][0-9])$", ErrorMessage = "Invalid time format. Please use HH:mm")]
-        public required string EntryTime { get; set; }
+        [RegularExpression(@"^([01]?[0-9]|2[0-3]):([0-5][0-9])$", ErrorMessage = "Invalid time format. Please use HH:mm 3")]
+        public required TimeOnly EntryTime { get; set; }
 
 
         [Required(ErrorMessage = "the Time is required")]
-        [RegularExpression(@"^([01]?[0-9]|2[0-3]):([0-5][0-9])$", ErrorMessage = "Invalid time format. Please use HH:mm")]
-        public required string DepartureTime { get; set; }
+        [RegularExpression(@"^([01]?[0-9]|2[0-3]):([0-5][0-9])$", ErrorMessage = "Invalid time format. Please use HH:mm 4")]
+        public required TimeOnly DepartureTime { get; set; }
 
 
         [Required(ErrorMessage = "the Role is required")]
